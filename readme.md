@@ -17,6 +17,15 @@ Criar um **workflow de processamento automatizado** que:
 
 > A movimentação entre as camadas deve ser realizada através de eventos
 
+Foi considerado neste fluxo:
+- Utilização do PySpark no Gluejob de transformação da tabela tbsor_yellow_tripdata para tbsor_yellow_rides
+- Construção de toda a arquitetura de data lake, tanto para a produção de dados quanto para consumo de dados
+- Metadados disponível em Glue Catalog
+- Linguagem de consulta considerando o SQL, que será processado no Athena (para usuários finais)
+
+Para o consumo, foi disponibilizado em analysis a construção do SQL respondendo as seguintes perguntas:
+- Qual a média de valor total (total\_amount) recebido em um mês considerando todos os yellow táxis da frota?
+- Qual a média de passageiros (passenger\_count) por cada hora do dia que pegaram táxi no mês de maio considerando todos os táxis da frota?
 ---
 
 ## 🏗️ Arquitetura
@@ -84,13 +93,6 @@ Função Lambda responsável por:
 
 ---
 
-### `case-ifood-app-lambda-ingest`
-Função Lambda responsável por:
-- Ler os arquivos da camada **landing**.
-- Carregar os dados brutos no database **tbsor_yellow_tripdata** (SoR).
-
----
-
 ### `case-ifood-infra-event-call-tbsor_yellow_tripdata`
 Configuração de evento no **S3**:
 - Detecta quando um novo arquivo chega na **landing-zone**.
@@ -98,9 +100,23 @@ Configuração de evento no **S3**:
 
 ---
 
+### `case-ifood-app-lambda-ingest`
+Função Lambda responsável por:
+- Ler os arquivos da camada **landing**.
+- Carregar os dados brutos no database **tbsor_yellow_tripdata** (SoR).
+---
+
+### `case-ifood-infra-event-call-tbsot_yellow_rides`
+Configuração de evento no **Glue Catalog**:
+- Detecta quando uma nova particao chega na **tbsor_yellow_tripdata**.
+- Dispara automaticamente a execução da **glue-tbsor_yellow_tripdata**.
+
+---
+
 ### `case-ifood-app-glue-tbsor_yellow_tripdata`
 Job do **AWS Glue** responsável por:
 - Ler os dados da camada **SoR**.
-- Aplicar transformações, filtros e seleção de colunas relevantes.
+- Aplicar transformações nas tipagens dos campos
+- Aplicar selecao de colunas especificas
+- Aplicar deduplicacao de registros duplicados
 - Gravar o resultado na tabela **tbsot_yellow_rides** (SoT).
-
