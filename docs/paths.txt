@@ -1,0 +1,28 @@
+case-ifood-data-pipeline/
+├─ analysis/
+├─ docs/
+├─ src/
+│  ├─ case-ifood-app-lambda-get/
+│  │  └─ src/
+│  │     └─ lambda_function.py
+│  ├─ case-ifood-app-lambda-ingest/
+│  │  └─ src/
+│  │     └─ lambda_function.py
+│  ├─ case-ifood-app-glue-tbsot_yellow_rides/
+│  │  └─ scripts/
+│  │     └─ glue_job_yellow.py
+│  ├─ case-ifood-infra-event-call-tbsor_yellow_tripdata/
+|  ├─ case-ifood-infra-event-call-tbsot_yellow_rides/
+│  ├─ case-ifood-infra-setup/
+│  └─ governed/
+│     ├─ sor/
+│     │  └─ tbsor_yellow_tripdata.tf
+│     ├─ sot/
+│     │  └─ tbsot_yellow_rides.tf
+│     └─ spec/
+├─ .gitignore
+├─ Makefile
+├─ main.tf
+├─ providers.tf
+├─ readme.md
+└─ requirements.txt
