@@ -1,0 +1,32 @@
+# Diretórios locais de estado
+.terraform/
+.terraform.lock.hcl
+
+# Arquivos de estado
+*.tfstate
+*.tfstate.*
+
+# Arquivos de plano
+*.tfplan
+*.tfplan.*
+
+# Overrides locais
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Configurações sensíveis locais
+terraform.tfvars
+*.auto.tfvars
+
+# Logs
+crash.log
+crash.*.log
+
+# Saídas temporárias
+*.bak
+*.tmp
+
+*.DS_Store
+*.zip
