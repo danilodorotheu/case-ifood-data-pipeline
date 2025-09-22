@@ -21,22 +21,21 @@ Criar um **workflow de processamento automatizado** que:
 ## 📌 Estrutura do Repositório
 case-ifood
 ├── Analysis
-│ └── perguntas.sql
-├── src
-│ ├── case-ifood-app-lambda-get
-│ ├── case-ifood-app-lambda-ingest
-│ ├── case-ifood-app-glue-tbsor_yellow_tripdata
-│ │ └── scripts
-│ │ └── glue_job_yellow.py
-│ ├── case-ifood-infra-event-call-tbsot_yellow_rides
-│ └── case-ifood-infra-setup
-│ └── governed
-│ ├── sor
-│ │ └── case-ifood-infra-setup
-│ ├── sot
-│ │ └── case-ifood-infra-setup
-│ └── spec
-
+│   └── perguntas.sql
+└── src
+    ├── case-ifood-app-lambda-get
+    ├── case-ifood-app-lambda-ingest
+    ├── case-ifood-app-glue-tbsor_yellow_tripdata
+    │   └── scripts
+    │       └── glue_job_yellow.py
+    ├── case-ifood-infra-event-call-tbsot_yellow_rides
+    ├── case-ifood-infra-setup
+    └── governed
+        ├── sor
+        │   └── case-ifood-infra-setup
+        ├── sot
+        │   └── case-ifood-infra-setup
+        └── spec
 
 ---
 
